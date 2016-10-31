@@ -20,13 +20,23 @@ use Vinkla\Hashids\Facades\Hashids;
 class PlansController extends Controller
 {
 
+    /**
+     * @var LaravelFacebookSdk
+     */
     protected $fb;
 
+    /**
+     * PlansController constructor.
+     * @param LaravelFacebookSdk $fb
+     */
     public function __construct(LaravelFacebookSdk $fb)
     {
         $this->fb = $fb;
     }
 
+    /**
+     * @return mixed
+     */
     public function getIndex()
     {
         return view(
@@ -38,11 +48,19 @@ class PlansController extends Controller
         );
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getTrial(Request $request)
     {
         return redirect(url('/blasting'));
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getMonthly(Request $request)
     {
         if( Auth::check() ) {
@@ -50,6 +68,10 @@ class PlansController extends Controller
         }
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getYearly(Request $request)
     {
         if( Auth::check() ) {
@@ -57,8 +79,10 @@ class PlansController extends Controller
         }
     }
 
-   
 
+    /**
+     * @return string
+     */
     protected function getPaypalUrl()
     {
         // select the url destination
@@ -69,6 +93,11 @@ class PlansController extends Controller
         }
     }
 
+    /**
+     * @param $package
+     * @param $user_facebook_id
+     * @return string
+     */
     protected function getPaypalParameters($package, $user_facebook_id)
     {
         $package_id = env(strtoupper('PAYPAL_' . $package . '_' . env('PAYPAL_ENV')));
@@ -85,11 +114,17 @@ class PlansController extends Controller
         return $params_string;
     }
 
+    /**
+     *
+     */
     public function getIpn()
     {
         $this->postIpn();
     }
 
+    /**
+     *
+     */
     public function postIpn()
     {
         Log::info('1');
@@ -254,6 +289,9 @@ class PlansController extends Controller
         Log::info('5');
     }
 
+    /**
+     * @return mixed
+     */
     public
     function getDir()
     {
