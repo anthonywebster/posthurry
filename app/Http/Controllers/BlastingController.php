@@ -18,7 +18,20 @@ use Symfony\Component\HttpFoundation\Request;
 class BlastingController extends Controller
 {
 
+    /**
+     * @var LaravelFacebookSdk
+     */
+    /**
+     * @var PostsPerDayRepository|LaravelFacebookSdk
+     */
     protected $fb, $postsPerDay;
+
+    /**
+     * BlastingController constructor.
+     * @param LaravelFacebookSdk $fb
+     * @param PostsPerDayRepository $postsperday
+     * @param BlastingRepository $blast
+     */
     public function __construct(LaravelFacebookSdk $fb,
         PostsPerDayRepository $postsperday,
         BlastingRepository $blast
@@ -29,7 +42,10 @@ class BlastingController extends Controller
         $this->blasting = $blast;
     }
 
-    public function index() 
+    /**
+     * @return mixed
+     */
+    public function index()
     {
         $user_id = Auth::user()->id;
 
@@ -38,7 +54,11 @@ class BlastingController extends Controller
         return view('blasting.index', ['user' => $user]);
     }
 
-    public function getBlastingOutForm( Request $request ) 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
+    public function getBlastingOutForm( Request $request )
     {
         $fb = true;
 
