@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Mockery\Exception;
 use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 use App\Library\Helpers\MediaHelper;
-//use App\Library\Repositories\PostsPerDayRepository;
 
 class MainController extends Controller
 {
