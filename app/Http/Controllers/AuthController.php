@@ -12,6 +12,11 @@ use SammyK\LaravelFacebookSdk\LaravelFacebookSdk;
 
 class AuthController extends Controller
 {
+    /**
+     * @param LaravelFacebookSdk $fb
+     * @param Request $request
+     * @return mixed
+     */
     public function fbConnect(LaravelFacebookSdk $fb, Request $request)
     {
         $login_url = $fb->getLoginUrl();
@@ -23,10 +28,14 @@ class AuthController extends Controller
         if ($request->has('package')) {
             $request->session()->put('selected_package', $request->get('package'));
         }
-        
+
         return redirect($login_url);
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function fbCallback(Request $request)
     {
         if ($request->session()->has('selected_package')) {
