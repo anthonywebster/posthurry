@@ -32,9 +32,6 @@ class BlastingController extends Controller
     public function index() 
     {
         $user_id = Auth::user()->id;
-        //$user = User::with( [ 'blasting' => function( $table ) {
-        //   return $table->groupBy( 'code' ); 
-        // } ] )->find($user_id);
 
         $user = User::find( $user_id );
 
