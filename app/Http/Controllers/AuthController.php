@@ -23,8 +23,7 @@ class AuthController extends Controller
         if ($request->has('package')) {
             $request->session()->put('selected_package', $request->get('package'));
         }
-
-
+        
         return redirect($login_url);
     }
 

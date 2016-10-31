@@ -155,10 +155,13 @@ class AccessController extends Controller
         return redirect('/');
     }
 
+    /**
+     * @param Request $request
+     * @return mixed
+     */
     public function getForget(Request $request)
     {
         return view('auth.emails.password', ['token' => str_random(), 'user' => Auth::user()]);
-//        return view('layouts.forget-password');
     }
 
 }
